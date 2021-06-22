@@ -4,22 +4,23 @@
  * @version 1.0
  * @Created_on: 22.06.21
  *
- * purpose: is to analyze user mood based on message and to use custom exception 
+ * purpose: is to analyze user mood based on message and to use custom exception
  * for handling invalid input.
  *
  */
 package com.bridgelabz.moodanalyser;
 
-public class MoodAnalyser {
+public class MoodAnalyzer {
 
     private String message;
 
     /**
-     * Created parameterized constructor which takes string as argument
+     * Refactor : Created parameterized constructor which takes string as
+     * argument
      *
      * @param message
      */
-    public MoodAnalyser(String message) {
+    public MoodAnalyzer(String message) {
         this.message = message;
     }
 
@@ -36,15 +37,18 @@ public class MoodAnalyser {
     }
 
     /**
-     *
+     * UC2: return happy even if user provide null input.
      * @return SAD OR HAPPY
      */
     public String analyseMood() {
-
-        if (message.contains("Sad")) {
-            return "SAD";
-        } else {
-            return "HAPPY";
+        try {
+            if (message.contains("Sad")) {
+                return "SAD";
+            } else {
+                return "HAPPY";
+            }
+        } catch (NullPointerException e) {
+           throw new MoodAnalyserException("Please enter a valid input");
         }
     }
 
